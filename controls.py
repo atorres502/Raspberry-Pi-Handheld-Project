@@ -34,6 +34,8 @@ JOYSTICK_TYPE = "digital"  # "digital" or "analog"
 BUTTON_PINS = {
     "a": 5,
     "b": 6,
+    "start": 13,
+    "select": 19,
 }
 
 # Used when JOYSTICK_TYPE == "digital"
