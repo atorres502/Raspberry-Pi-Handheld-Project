@@ -86,12 +86,12 @@ class Controls:
         directions = {"up": False, "down": False, "left": False, "right": False}
         # Snap to the dominant axis so the stick behaves like a 4-way d-pad
         # (prevents accidental diagonals in grid-based games)
-        if max(abs(x), abs(y)) < ANALOG_DEADZONE:
-            return directions
-        if abs(x) > abs(y):
+
+        if (abs(x) > ANALOG_DEADZONE):
             directions["right" if x > 0 else "left"] = True
-        else:
+        elif abs(y) > ANALOG_DEADZONE:
             directions["up" if y > 0 else "down"] = True
+
         return directions
 
     def read(self):
