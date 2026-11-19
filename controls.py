@@ -1,7 +1,9 @@
 """
-Reads the handheld's physical controls (joystick + A/B buttons) from the
-Raspberry Pi's GPIO pins and exposes them as a simple Game Boy style state:
-a 4-way d-pad plus A and B.
+Reads the handheld's physical controls (joystick + buttons) from the
+Raspberry Pi's GPIO pins and exposes them as an SNES style state: a 4-way
+d-pad, A/B/X/Y face buttons, L/R shoulder buttons, Start and Select.
+This covers every system from the NES through the SNES and GBA (games that
+don't use a button simply ignore it).
 
 Hardware is still being decided, so the joystick type is configurable:
   - "digital": an arcade-style stick with 4 microswitches (one GPIO pin each)
@@ -28,12 +30,17 @@ except ImportError:
 
 # ---------------------------------------------------------------------------
 # Configuration (BCM pin numbers) -- update once the hardware is final
+# Avoid GPIO 2-3 (I2C), 7-11 (SPI, needed by the MCP3008) and 14-15 (UART).
 # ---------------------------------------------------------------------------
 JOYSTICK_TYPE = "digital"  # "digital" or "analog"
 
 BUTTON_PINS = {
     "a": 5,
     "b": 6,
+    "x": 24,
+    "y": 25,
+    "l": 26,       # left shoulder
+    "r": 16,       # right shoulder
     "start": 13,
     "select": 19,
 }

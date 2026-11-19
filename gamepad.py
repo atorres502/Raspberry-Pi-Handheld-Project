@@ -1,5 +1,5 @@
 """
-Turns the handheld's GPIO controls into a virtual NES gamepad that emulators
+Turns the handheld's GPIO controls into a virtual SNES-style gamepad that emulators
 (RetroArch, RetroPie, etc.) see exactly like a USB controller.
 
 It reuses Controls from controls.py to read the pins, then forwards every
@@ -26,8 +26,11 @@ except ImportError:
 DEVICE_NAME = "Handheld Controller"
 
 # Control name (from Controls.read()) -> Linux gamepad button code.
-# Uses the standard layout: BTN_EAST is the right face button (NES A),
-# BTN_SOUTH the bottom one (NES B).
+# Uses the standard SNES layout for the four face buttons:
+#        X (north)
+#   Y (west)   A (east)
+#        B (south)
+# L and R are the shoulder buttons (GBA and SNES).
 BUTTON_CODES = {
     "up": ecodes.BTN_DPAD_UP,
     "down": ecodes.BTN_DPAD_DOWN,
@@ -35,6 +38,10 @@ BUTTON_CODES = {
     "right": ecodes.BTN_DPAD_RIGHT,
     "a": ecodes.BTN_EAST,
     "b": ecodes.BTN_SOUTH,
+    "x": ecodes.BTN_NORTH,
+    "y": ecodes.BTN_WEST,
+    "l": ecodes.BTN_TL,
+    "r": ecodes.BTN_TR,
     "start": ecodes.BTN_START,
     "select": ecodes.BTN_SELECT,
 }
